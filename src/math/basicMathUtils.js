@@ -36,5 +36,5 @@ export function multiply(a, b) {
  * @returns {number} Quotient.
  */
 export function divide(a, b) {
-  return a / a;
+  return a / b;
 }
