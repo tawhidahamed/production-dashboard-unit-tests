@@ -11,7 +11,8 @@ import {
 import {
   add,
   subtract,
-  multiply
+  multiply,
+  divide
 } from '../src/math/basicMathUtils.js';
 
 /**
@@ -26,8 +27,9 @@ import {
  * 5. add()
  * 6. subtract()
  * 7. multiply()
+ * 8. divide()
  *
- * Total test cases: 44
+ * Total test cases: 52
  */
 
 // FUNCTION 1: SUM
@@ -244,6 +246,44 @@ describe('Production Dashboard - multiply()', function () {
 
   it('should handle large production quantities', function () {
     expect(multiply(10000, 250)).to.equal(2500000);
+  });
+
+});
+
+// FUNCTION 8: DIVIDE
+
+describe('Production Dashboard - divide()', function () {
+
+  it('should calculate average production per employee', function () {
+    expect(divide(500, 5)).to.equal(100);
+  });
+
+  it('should divide two positive numbers', function () {
+    expect(divide(100, 4)).to.equal(25);
+  });
+
+  it('should handle division resulting in a decimal', function () {
+    expect(divide(10, 4)).to.equal(2.5);
+  });
+
+  it('should return zero when the dividend is zero', function () {
+    expect(divide(0, 5)).to.equal(0);
+  });
+
+  it('should handle a negative dividend', function () {
+    expect(divide(-100, 4)).to.equal(-25);
+  });
+
+  it('should handle two negative numbers', function () {
+    expect(divide(-100, -4)).to.equal(25);
+  });
+
+  it('should divide large production quantities', function () {
+    expect(divide(10000, 250)).to.equal(40);
+  });
+
+  it('should return one when dividing a number by itself', function () {
+    expect(divide(100, 100)).to.equal(1);
   });
 
 });
