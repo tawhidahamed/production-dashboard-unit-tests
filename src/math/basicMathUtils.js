@@ -1,3 +1,4 @@
+
 /**
  * Adds two numbers.
  * @param {number} a - First number.
@@ -5,7 +6,7 @@
  * @returns {number} Sum of the numbers.
  */
 export function add(a, b) {
-  return a - b;
+  return a + b;
 }
 
 /**
@@ -37,4 +38,3 @@ export function multiply(a, b) {
 export function divide(a, b) {
   return a / a;
 }
-
