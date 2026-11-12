@@ -15,11 +15,19 @@ import {
   divide
 } from '../src/math/basicMathUtils.js';
 
+import {
+  roundTo
+} from '../src/math/roundingUtils.js';
+
+import {
+  isPositive
+} from '../src/math/numberUtils.js';
+
 /**
  * Production Monitoring Dashboard
- * Unit testing with Mocha and Chai.
+ * Unit testing using Mocha and Chai.
  *
- * Functions tested:
+ * Selected functions:
  * 1. sum()
  * 2. min()
  * 3. max()
@@ -28,8 +36,10 @@ import {
  * 6. subtract()
  * 7. multiply()
  * 8. divide()
+ * 9. roundTo()
+ * 10. isPositive()
  *
- * Total test cases: 52
+ * Total test cases: 68
  */
 
 // FUNCTION 1: SUM
@@ -284,6 +294,83 @@ describe('Production Dashboard - divide()', function () {
 
   it('should return one when dividing a number by itself', function () {
     expect(divide(100, 100)).to.equal(1);
+  });
+
+});
+
+// FUNCTION 9: ROUND TO
+
+describe('Production Dashboard - roundTo()', function () {
+
+  it('should round production weight to two decimal places', function () {
+    expect(roundTo(125.678, 2)).to.equal(125.68);
+  });
+
+  it('should round production weight down correctly', function () {
+    expect(roundTo(125.674, 2)).to.equal(125.67);
+  });
+
+  it('should round production values to whole numbers', function () {
+    expect(roundTo(125.7, 0)).to.equal(126);
+  });
+
+  it('should preserve a value already at the requested precision', function () {
+    expect(roundTo(125.5, 1)).to.equal(125.5);
+  });
+
+  it('should round negative production adjustments', function () {
+    expect(roundTo(-12.346, 2)).to.equal(-12.35);
+  });
+
+  it('should handle zero correctly', function () {
+    expect(roundTo(0, 2)).to.equal(0);
+  });
+
+  it('should round to three decimal places', function () {
+    expect(roundTo(12.34567, 3)).to.equal(12.346);
+  });
+
+  it('should round a large production quantity', function () {
+    expect(roundTo(12345.6789, 2)).to.equal(12345.68);
+  });
+
+});
+
+// FUNCTION 10: IS POSITIVE
+
+describe('Production Dashboard - isPositive()', function () {
+
+  it('should identify positive production values', function () {
+    expect(isPositive(150)).to.equal(true);
+  });
+
+  it('should identify negative production values', function () {
+    expect(isPositive(-150)).to.equal(false);
+  });
+
+  it('should identify zero as not positive', function () {
+    expect(isPositive(0)).to.equal(false);
+  });
+
+  it('should identify positive decimal values', function () {
+    expect(isPositive(0.5)).to.equal(true);
+  });
+
+  it('should identify negative decimal values', function () {
+    expect(isPositive(-0.5)).to.equal(false);
+  });
+
+  it('should handle large positive quantities', function () {
+    expect(isPositive(1000000)).to.equal(true);
+  });
+
+  it('should handle large negative adjustments', function () {
+    expect(isPositive(-1000000)).to.equal(false);
+  });
+
+  it('should identify a positive production difference', function () {
+    const difference = subtract(600, 500);
+    expect(isPositive(difference)).to.equal(true);
   });
 
 });
