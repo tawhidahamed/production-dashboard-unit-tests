@@ -1,20 +1,24 @@
 
 import { expect } from 'chai';
+
 import {
   sum,
   min,
-  max
+  max,
+  average
 } from '../src/math/statisticsUtils.js';
 
 /**
- * Unit tests for selected statistical utility functions.
+ * Unit tests for the Production Monitoring Dashboard.
  *
- * Application: Production Monitoring Dashboard
- * Testing framework: Mocha and Chai
+ * Library: AT00CK37-3004
+ * Framework: Mocha and Chai
  *
- * These tests verify calculations used to monitor
- * production quantities and performance.
+ * Tests verify production totals, minimum values,
+ * maximum values, and average production.
  */
+
+// FUNCTION 1: SUM
 
 describe('Production Dashboard - sum()', function () {
 
@@ -40,6 +44,8 @@ describe('Production Dashboard - sum()', function () {
 
 });
 
+// FUNCTION 2: MIN
+
 describe('Production Dashboard - min()', function () {
 
   it('should find the lowest production value', function () {
@@ -63,6 +69,8 @@ describe('Production Dashboard - min()', function () {
   });
 
 });
+
+// FUNCTION 3: MAX
 
 describe('Production Dashboard - max()', function () {
 
@@ -88,6 +96,36 @@ describe('Production Dashboard - max()', function () {
 
   it('should handle repeated maximum values', function () {
     expect(max([200, 300, 300, 100])).to.equal(300);
+  });
+
+});
+
+// FUNCTION 4: AVERAGE
+
+describe('Production Dashboard - average()', function () {
+
+  it('should calculate average production correctly', function () {
+    expect(average([100, 200, 300])).to.equal(200);
+  });
+
+  it('should handle a single production value', function () {
+    expect(average([150])).to.equal(150);
+  });
+
+  it('should handle zero production values', function () {
+    expect(average([0, 0, 0])).to.equal(0);
+  });
+
+  it('should calculate decimal averages correctly', function () {
+    expect(average([10, 20, 25])).to.be.closeTo(18.333333, 0.000001);
+  });
+
+  it('should handle negative production values', function () {
+    expect(average([-10, 20, 30])).to.be.closeTo(13.333333, 0.000001);
+  });
+
+  it('should return zero for an empty production dataset', function () {
+    expect(average([])).to.equal(0);
   });
 
 });
