@@ -10,7 +10,8 @@ import {
 
 import {
   add,
-  subtract
+  subtract,
+  multiply
 } from '../src/math/basicMathUtils.js';
 
 /**
@@ -24,6 +25,9 @@ import {
  * 4. average()
  * 5. add()
  * 6. subtract()
+ * 7. multiply()
+ *
+ * Total test cases: 44
  */
 
 // FUNCTION 1: SUM
@@ -202,6 +206,44 @@ describe('Production Dashboard - subtract()', function () {
 
   it('should handle equal production values', function () {
     expect(subtract(250, 250)).to.equal(0);
+  });
+
+});
+
+// FUNCTION 7: MULTIPLY
+
+describe('Production Dashboard - multiply()', function () {
+
+  it('should calculate total production weight', function () {
+    expect(multiply(120, 2.5)).to.equal(300);
+  });
+
+  it('should multiply two positive numbers', function () {
+    expect(multiply(20, 15)).to.equal(300);
+  });
+
+  it('should return zero when the first value is zero', function () {
+    expect(multiply(0, 100)).to.equal(0);
+  });
+
+  it('should return zero when the second value is zero', function () {
+    expect(multiply(100, 0)).to.equal(0);
+  });
+
+  it('should multiply negative numbers correctly', function () {
+    expect(multiply(-10, 5)).to.equal(-50);
+  });
+
+  it('should multiply two negative numbers correctly', function () {
+    expect(multiply(-10, -5)).to.equal(50);
+  });
+
+  it('should handle decimal values', function () {
+    expect(multiply(2.5, 3.2)).to.be.closeTo(8, 0.000001);
+  });
+
+  it('should handle large production quantities', function () {
+    expect(multiply(10000, 250)).to.equal(2500000);
   });
 
 });
