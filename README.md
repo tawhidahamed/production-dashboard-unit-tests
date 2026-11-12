@@ -16,3 +16,5 @@ Ten critical functions are selected using MoSCoW prioritization.
 
 ## Original Library
 https://github.com/petri-rantanen/AT00CK37-3004
+
+[![Coverage Status](https://coveralls.io/repos/github/tawhidahamed/production-dashboard-unit-tests/badge.svg?branch=main)](https://coveralls.io/github/tawhidahamed/production-dashboard-unit-tests?branch=main)
