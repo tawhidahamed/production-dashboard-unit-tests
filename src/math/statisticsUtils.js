@@ -12,9 +12,11 @@ export function average(arr) {
  * @param {number[]} arr - Input numbers.
  * @returns {number} Minimum value.
  */
+
 export function min(arr) {
-  return Math.min(arr);
+  return Math.min(...arr);
 }
+
 
 /**
  * Returns the maximum value.
