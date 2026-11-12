@@ -8,6 +8,10 @@ import {
   average
 } from '../src/math/statisticsUtils.js';
 
+import {
+  add
+} from '../src/math/basicMathUtils.js';
+
 /**
  * Unit tests for the Production Monitoring Dashboard.
  *
@@ -15,7 +19,7 @@ import {
  * Framework: Mocha and Chai
  *
  * Tests verify production totals, minimum values,
- * maximum values, and average production.
+ * maximum values, averages, and addition.
  */
 
 // FUNCTION 1: SUM
@@ -126,6 +130,40 @@ describe('Production Dashboard - average()', function () {
 
   it('should return zero for an empty production dataset', function () {
     expect(average([])).to.equal(0);
+  });
+
+});
+
+// FUNCTION 5: ADD
+
+describe('Production Dashboard - add()', function () {
+
+  it('should add production from two machines', function () {
+    expect(add(100, 200)).to.equal(300);
+  });
+
+  it('should add two positive numbers', function () {
+    expect(add(25, 35)).to.equal(60);
+  });
+
+  it('should handle zero as the second value', function () {
+    expect(add(150, 0)).to.equal(150);
+  });
+
+  it('should handle zero as the first value', function () {
+    expect(add(0, 150)).to.equal(150);
+  });
+
+  it('should add negative values correctly', function () {
+    expect(add(-10, 20)).to.equal(10);
+  });
+
+  it('should add decimal production values', function () {
+    expect(add(10.5, 20.2)).to.be.closeTo(30.7, 0.000001);
+  });
+
+  it('should handle large production quantities', function () {
+    expect(add(10000, 25000)).to.equal(35000);
   });
 
 });
