@@ -30,7 +30,9 @@ export function max(arr) {
  * @param {number[]} arr - Input numbers.
  * @returns {number} Sum of values.
  */
+
 export function sum(arr) {
-  return arr.reduce((total, value) => total + value);
+  return arr.reduce((total, value) => total + value, 0);
 }
+
 
