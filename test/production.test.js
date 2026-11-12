@@ -9,17 +9,21 @@ import {
 } from '../src/math/statisticsUtils.js';
 
 import {
-  add
+  add,
+  subtract
 } from '../src/math/basicMathUtils.js';
 
 /**
- * Unit tests for the Production Monitoring Dashboard.
+ * Production Monitoring Dashboard
+ * Unit testing with Mocha and Chai.
  *
- * Library: AT00CK37-3004
- * Framework: Mocha and Chai
- *
- * Tests verify production totals, minimum values,
- * maximum values, averages, and addition.
+ * Functions tested:
+ * 1. sum()
+ * 2. min()
+ * 3. max()
+ * 4. average()
+ * 5. add()
+ * 6. subtract()
  */
 
 // FUNCTION 1: SUM
@@ -164,6 +168,40 @@ describe('Production Dashboard - add()', function () {
 
   it('should handle large production quantities', function () {
     expect(add(10000, 25000)).to.equal(35000);
+  });
+
+});
+
+// FUNCTION 6: SUBTRACT
+
+describe('Production Dashboard - subtract()', function () {
+
+  it('should calculate remaining production to reach a target', function () {
+    expect(subtract(500, 350)).to.equal(150);
+  });
+
+  it('should subtract two positive numbers', function () {
+    expect(subtract(100, 40)).to.equal(60);
+  });
+
+  it('should return a negative value when production exceeds the target', function () {
+    expect(subtract(500, 600)).to.equal(-100);
+  });
+
+  it('should handle zero as the second value', function () {
+    expect(subtract(150, 0)).to.equal(150);
+  });
+
+  it('should handle zero as the first value', function () {
+    expect(subtract(0, 150)).to.equal(-150);
+  });
+
+  it('should subtract decimal production values', function () {
+    expect(subtract(100.5, 40.2)).to.be.closeTo(60.3, 0.000001);
+  });
+
+  it('should handle equal production values', function () {
+    expect(subtract(250, 250)).to.equal(0);
   });
 
 });
